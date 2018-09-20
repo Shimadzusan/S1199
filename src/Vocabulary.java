@@ -1,7 +1,10 @@
-	import java.sql.SQLException;
+	import java.io.File;
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
 	import java.util.ArrayList;
 	import java.util.HashMap;
 	import java.util.Map;
+import java.util.Scanner;
 
 	//FRAMEWORK
 	//КЛАСС ДЛЯ ОБРАЩЕНИЙ К ФАКТУРЕ В БАЗЕ ДАННЫХ
@@ -25,8 +28,10 @@
 //					conn.CloseDB();
 					
 	//---------------------------------------------------------------------------------------//
-	String primary = "In threatening tariffs on as much as $450 billion worth of Chinese goods, the administration is betting that Beijing will blink first. It’s a risky gamble by a White House that appears ready to forgo diplomatic negotiations in favor of punishing tariffs that could pinch consumers and companies on both sides of the Pacific.The approach fulfills a frequent campaign promise by Mr. Trump. But it has spooked companies, investors and markets, which are increasingly worried that the United States has no other strategy to resolve a stalemate with China over its trade practices. Several rounds of trade talks with top Chinese officials in Washington and Beijing produced little agreement, and no additional official negotiations are scheduled, administration officials said. On Tuesday, Mr. Trump suggested he was ready for a fight, saying China would no longer take advantage of the United States.";	
-String lower = primary.toLowerCase();
+	//String primary = "In threatening tariffs on as much as $450 billion worth of Chinese goods, the administration is betting that Beijing will blink first. It’s a risky gamble by a White House that appears ready to forgo diplomatic negotiations in favor of punishing tariffs that could pinch consumers and companies on both sides of the Pacific.The approach fulfills a frequent campaign promise by Mr. Trump. But it has spooked companies, investors and markets, which are increasingly worried that the United States has no other strategy to resolve a stalemate with China over its trade practices. Several rounds of trade talks with top Chinese officials in Washington and Beijing produced little agreement, and no additional official negotiations are scheduled, administration officials said. On Tuesday, Mr. Trump suggested he was ready for a fight, saying China would no longer take advantage of the United States.";	
+	String primary = read();
+	
+	String lower = primary.toLowerCase();
 	ArrayList first = new ArrayList();
 	String s5 = "";
 	char[] alpha_text = lower.toCharArray();
@@ -275,6 +280,33 @@ String lower = primary.toLowerCase();
 		           System.out.println(i+" / " + z2);
 		           }
 			
+		}
+		
+		
+		private static String read(){
+			File main_text = new File("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");
+			Scanner scan_main_text = null;
+		
+			try {
+			scan_main_text = new Scanner(main_text);
+			} 
+
+			catch (FileNotFoundException e) {
+			e.printStackTrace();
+			}
+			 
+			String s_file = ""; 
+			while(scan_main_text.hasNextLine()){		
+			s_file += scan_main_text.nextLine();
+			//scan_main_text.close();
+			}
+			System.out.println(s_file);
+			return s_file;
+
+			//System.out.println();
+			//System.out.println("the number from time_file: " + s_file + " ...format <STRING>;");
+
+			//////////////////////////////////////////////////////////////////////////////////////
 		}
 
 	}

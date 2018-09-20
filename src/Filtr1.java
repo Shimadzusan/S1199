@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-//20-04-2018	*йнкхвеярбн опедкнфемхи х онхяй
+//20-04-2018	*О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫
 public class Filtr1 {
 	
 	static JTextArea text = new JTextArea(10,10);
@@ -45,14 +45,14 @@ public class Filtr1 {
 		frame.setVisible(true);
 	}
 
-///////////////////лндскэ ондяверю йнкхвеярбю яхлбнкнб х якнб/////////////////////
+///////////////////п▓п║п∙ п▓п≈п░п≤п°п·п■п∙п≥п║п╒п▓п≤п∙ п²п░п⌡п∙п÷п≤п⌡ п▓ п·п■п≤п² п°п∙п╒п·п■ п²п░ 150 п║п╒п═п·п !!!///////
 	
 	static public void butt() {
 		
 		String s = text.getText();
 		char[] sof = s.toCharArray();
 		int x = 0;
-												//яйнкэйн опнаекнб, ярнкэйн х якнб!!!
+												//п©п╬ я┌п╬я┤п╨п╟п╪ я│я┤п╦я┌п╟п╣п╪ п©я─п╣п╢п╩п╬п╤п╣п╫п╦я▐!!!
 		for(int i = 0; i < sof.length; i++) {
 			String d = sof[i]+ "";
 			if (d.equals(".")) {
@@ -61,24 +61,24 @@ public class Filtr1 {
 			
 		}
 		
-//////////////////////онхяй///////////////////////////////////////////////////////////
+//////////////////////О©╫О©╫О©╫О©╫О©╫///////////////////////////////////////////////////////////
 		
-		String[] text = s.split(" ");				//пюгкнфемхе мю щкелемрш
+		String[] text = s.split(" ");				//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 		for(int i = 0; i < text.length; i++) {
 			System.out.println(text[i]);
 		}
-													//якнфемхе щкелемрнб
+													//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 		String result = "";
 		for(int i = 0; i < text.length; i++ ){
 			result = result + " " + text[i];
 			
 		}
 		
-///////////////////////////////онхяй//////////////////////////////////////////////
+///////////////////////////////О©╫О©╫О©╫О©╫О©╫//////////////////////////////////////////////
 //		for(int i = 0; i < sof.length; i++){
 //		char h = sof[i];
 //		String j = Character.toString(h);
-//			if(sof[i] == 'Я' && sof[i+1] == 'Х' && sof[i+2] == 'П' && sof[i+3] == 'Х'){
+//			if(sof[i] == 'О©╫' && sof[i+1] == 'О©╫' && sof[i+2] == 'О©╫' && sof[i+3] == 'О©╫'){
 //				System.out.println("+++ZZZ+++");
 //			
 //		}
@@ -108,7 +108,7 @@ String result2 = "";
 			
 		}
 		
-//////////////////////////////////////////онхяй 222////////////////////////////////////////
+//////////////////////////////////////////О©╫О©╫О©╫О©╫О©╫ 222////////////////////////////////////////
 		char[] mass = result2.toCharArray();
 		int sir = 0;
 		int rus = 0;
@@ -117,25 +117,25 @@ String result2 = "";
 		
 		for(int i = 0; i < mass.length; i++){
 			//System.out.println("Im SYRIA");
-			//яхпхъ
-				if(mass[i] == 'Я' && mass[i+1] == 'Х' && mass[i+2] == 'П' && mass[i+3] == 'Х'){
+			//О©╫О©╫О©╫О©╫О©╫
+				if(mass[i] == 'О©╫' && mass[i+1] == 'О©╫' && mass[i+2] == 'О©╫' && mass[i+3] == 'О©╫'){
 					System.out.println("+++ZZZ+++");
 					sir++;
 				
 			}
-				//пняяхъ
-				if(mass[i] == 'П' && mass[i+1] == 'Н' && mass[i+2] == 'Я' && mass[i+3] == 'Я' && mass[i+4] == 'Х'){
+				//О©╫О©╫О©╫О©╫О©╫О©╫
+				if(mass[i] == 'О©╫' && mass[i+1] == 'О©╫' && mass[i+2] == 'О©╫' && mass[i+3] == 'О©╫' && mass[i+4] == 'О©╫'){
 					System.out.println("+++RRR+++");
 					rus++;
 				
 			}
 				//USA and America
-				if(mass[i] == 'Я' && mass[i+1] == 'Ь' && mass[i+2] == 'Ю'){
+				if(mass[i] == 'О©╫' && mass[i+1] == 'О©╫' && mass[i+2] == 'О©╫'){
 					System.out.println("+++USA+++");
 					us++;
 				}
 				
-				if(mass[i] == 'Ю' && mass[i+1] == 'Л' && mass[i+2] == 'Е' && mass[i+3] == 'П' && mass[i+4] == 'Х'){
+				if(mass[i] == 'О©╫' && mass[i+1] == 'О©╫' && mass[i+2] == 'О©╫' && mass[i+3] == 'О©╫' && mass[i+4] == 'О©╫'){
 					System.out.println("+++AMER+++");
 					am++;
 				}
@@ -150,7 +150,7 @@ String result2 = "";
 /////////////////////////////////////////////TO CLEAR!!!//////////////////////////////////
 		int index = 0;
 		for(int i = 0; i < mass.length; i++){
-			// люпйеп нвхярйх 1999-2018
+			// О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 1999-2018
 				if(mass[i] == '1' && mass[i+1] == '9' && mass[i+2] == '9' && mass[i+3] == '9'){
 					System.out.println("I AM CLEAR, POINT: " + i);
 					index = i;
@@ -171,7 +171,7 @@ String result2 = "";
 			
 		}
 		System.out.println("****" + list2 + "***");
-		//LIST2 щрн нвхыеммши ярпхмц!!!
+		//LIST2 О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫!!!
 ///////////////////////////////////////////////////////////////////////////////////////////
 		
 		System.out.println("I am RESULT2 LOWER: " + result2);
@@ -179,7 +179,7 @@ String result2 = "";
 		
 //////////////////////////////////////////////////////////////////////////////////////
 		
-		String m = "йНКХВЕЯРБН ЯХЛБНКНБ: "+ sof.length +"\n" + "йНКХВЕЯРБН ОПЕДКНФЕМХИ: "+ x + "\n" + "Syria: " + sir + "\n" + "Russia: " + rus +
+		String m = "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫: "+ sof.length +"\n" + "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫: "+ x + "\n" + "Syria: " + sir + "\n" + "Russia: " + rus +
 				"\n" + "USA: " + us + "\n" + "America: " + am;
 		System.out.println(s.length());
 		System.out.println("Size array TEXT: " + text.length);
