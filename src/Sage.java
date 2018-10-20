@@ -7,14 +7,14 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Sage {
-	String s_file = "";
+	String main_text = "";
 	
 	Sage(){
 //-----------------------MAIN INTERFACE--------------------------------------------------------------*
 		System.out.println("Interface of output!");
 		System.out.println("...text from*");
 		loding_data();
-		System.out.println("количество символов: с пробелами - " + s_file.length() + ", без пробелов - " + (s_file.length() - words_volume()));
+		System.out.println("количество символов: с пробелами - " + main_text.length() + ", без пробелов - " + (main_text.length() - words_volume()));
 		System.out.println("количество слов: " + words_volume());
 		System.out.println("словарный запас: " + vocabulary());
 		System.out.println("количество предложений: " + satz_volume());
@@ -22,7 +22,6 @@ public class Sage {
 		System.out.println("-------------------------------------------------------------");
 		System.out.println("Имена:");
 		names();
-		names2();
 		System.out.println("-------------------------------------------------------------");
 		System.out.println("Числа:");
 		numbers();
@@ -37,27 +36,30 @@ public void loding_data() {
 //..LODING DATA INTO MEMORY FROM LOCATION ON H.D.D
 //INPUT: FILE ON HARD DISK
 //OUTPUT: VARIABLE TYPE STRING
-			File main_text = new File("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");//*input
+			File text_from_file = new File("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");//*input
 			Scanner scan_main_text = null;
 				
 				try {
-				scan_main_text = new Scanner(main_text);
+				scan_main_text = new Scanner(text_from_file);
 				} 
 				catch (FileNotFoundException e) {
 				e.printStackTrace();
 				}
 						  
 					while(scan_main_text.hasNextLine()){		
-					s_file += scan_main_text.nextLine() + " ";
+						main_text += scan_main_text.nextLine() + " ";
 					
 					}
 					scan_main_text.close();
-					//System.out.println(s_file);//*output		
+					
+//Добавление "абракадабры" для чего смотри метод names()
+					//main_text = "qwertyu. " + main_text + " uytrewq";
+					//System.out.println(main_text);//*output
 					}
 
 public int words_volume() {
 //..COUNT ALL WORDS FROM DATATEXT
-	String[] array_all_words = s_file.split(" ");	//подсчет слов по количеству пробелов
+	String[] array_all_words = main_text.split(" ");	//подсчет слов по количеству пробелов
 	int volume = array_all_words.length;
 			
 //Options: сборка слов вновь в текст с пробелами
@@ -71,7 +73,7 @@ public int words_volume() {
 public int satz_volume() {
 //..COUNT ALL SATZ FROM DATATEXT
 	int point_count = 0;
-	char[] array_of_symbol = s_file.toCharArray();			//подсчет предложений по количеству точек
+	char[] array_of_symbol = main_text.toCharArray();			//подсчет предложений по количеству точек
 			
 		for(int i = 0; i < array_of_symbol.length; i++) {
 				if(array_of_symbol[i] == '.') point_count++;
@@ -83,7 +85,7 @@ public int vocabulary() {
 //..COUNT VOLUME DIFFRENT WORDS FROM DATATEXT
 //..словарный запас
 	int difference = 0;
-	String text = getClear_text(s_file);			
+	String text = getClear_text(main_text);			
 	String[] array_all_words = text.split(" ");
 	HashSet<String> set = new HashSet<String>(); //вычисление различных слов через SET
 				
@@ -129,115 +131,7 @@ public String getClear_text2(String fragment){
 		return final_fragment;
 	}
 
-
-public void names(){
-//Первое слово из новай строки воспринимается как имя! 
-//	
-//	int abz = 0;
-//	byte [] s2 = s_file.getBytes();
-//
-//	for(int i = 0; i < s2.length; i++){
-//		if(s2[i] == 10)abz++;
-//	}
-//	System.out.println("колво АБЗ: " + abz);
-	
-	///////////////////ЕСЛИ ТОЧКА В МАССИВЕ УДАЛЯЕМ ОКРУЖАЮЩИЕ СИМВОЛЫ!!!!
-	
-	
-	////////////////////////////
-	char[] text = s_file.toCharArray();
-	ArrayList<Character> array = new ArrayList<Character>();
-	//array = (ArrayList<Character>) text;
-			
-			for(int q = 0; q < text.length; q++){
-			array.add(text[q]);
-			}
-		
-			
-			for(int q = 0; q < text.length; q++){
-				if(array.get(q) == '.'){
-//					array.remove(q);
-//					array.remove(q+1);
-//					array.remove(q+2);
-					//array.set(q, 'z');
-					array.set(q +1, ' ');
-					array.set(q+2, 'z');
-					//array.set(q-1, ' ');
-					array.set(q+3, 'z');
-					array.set(q+4, 'z');
-//					array.remove(q-1);
-//					array.remove(q-2);
-				}
-			}
-			
-			
-			
-	String text500 = "";
-	for(int q = 0; q < array.size(); q++){
-		
-		text500 = text500 + array.get(q);
-		
-		
-		
-	}
-	
-//	String[] version_two = s_file.split("\n");
-//	//System.out.println(s_file);
-//	for(int w = 0; w < version_two.length; w++){
-//		//text500 += version_two[w];
-//		System.out.println(version_two[w]);
-//	}
-	
-	
-//	for(int i = 2; i < text.length; i++){
-//		ch = text[i];
-//		
-//		if(Character.isUpperCase(ch) && text[i-2] != '.'){
-//			
-//			//System.out.println(ch);
-//		}
-//	}
-	HashSet<String> set = new HashSet<String>();
-	String s = "";
-	String last = "";
-	String[] text2 = text500.split(" ");
-	
-	char ch = ' ';
-	boolean b = true;
-	
-	for(int ii = 0; ii < text2.length; ii++){
-		s = text2[ii];
-		if(ii > 0)last = text2[ii - 1];
-		char[] word = s.toCharArray();
-		char[] lst = last.toCharArray();
-			
-				for(int k = 0; k < word.length; k++){
-						b = true;
-						ch = word[k];
-						if(Character.isUpperCase(ch)){
-								for(int j = 0; j < lst.length; j++){
-									if(lst[j] == '.'){b = false;break;}
-								}
-								if(b == true){
-							//System.out.println(s);
-							set.add(getClear_text(s));
-							break;
-							}
-						}
-					}
-	}
-	//OUTPUT
-	for(String element : set){
-		System.out.println(element);
-	}
-}
-
-public void names2(){
-//INTERFACE
-	System.out.println("-------------------------------------------------------------");
-	System.out.println("NAMES 2");
-	System.out.println();
-	
+public void names(){	
 	/*
 	 * Метод names() извлекает из текста Имена следующим образом:
 	 * Исходный текст преобразуется в массив символов
@@ -246,9 +140,12 @@ public void names2(){
 	 * либо другие варианты
 	 * Обнаружив искомую последовательность символов, формируется строка, которая и есть Имя
 	 * Имена добавляются в список
+	 * 
+	 * В силу специфики алгоритма в начало и конец текста намерено добавлене "абракадабра",
+	 * пока это решение под вопросом
 	 */
 	
-	char[] array_all_symbol = s_file.toCharArray();
+	char[] array_all_symbol = main_text.toCharArray();
 	char symbol;
 	String name = "";
 	ArrayList<String> list_of_name = new ArrayList<String>();
@@ -282,7 +179,7 @@ public void numbers(){
 	 * В массиве символов осуществляется поиск чисел
 	 * Если находим число, извлекаем все слово, и переходим к следующему слову
 	 */
-	String[] list_all_words = s_file.split(" ");
+	String[] list_all_words = main_text.split(" ");
 	String word_of_list_all_words = "";
 	char[] list_of_sybol;
 	char symbol;
@@ -304,7 +201,7 @@ public void numbers(){
 
 public void text_structure(){
 //..TEXT_STRUCTURE TYPE ONE
-	String s = getClear_text(s_file);
+	String s = getClear_text(main_text);
 	
 	String[] text = s.split(" ");			//..*PART FROM VOCABULARY_METHOD
 	HashSet<String> set = new HashSet<String>();
