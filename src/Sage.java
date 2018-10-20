@@ -21,7 +21,8 @@ public class Sage {
 		
 		System.out.println("-------------------------------------------------------------");
 		System.out.println("Имена:");
-		//names();
+		names();
+		names2();
 		System.out.println("-------------------------------------------------------------");
 		System.out.println("Числа:");
 		numbers();
@@ -39,78 +40,153 @@ public void loding_data() {
 			File main_text = new File("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");//*input
 			Scanner scan_main_text = null;
 				
-			try {
-			scan_main_text = new Scanner(main_text);
-			} 
-			catch (FileNotFoundException e) {
-			e.printStackTrace();
-			}
+				try {
+				scan_main_text = new Scanner(main_text);
+				} 
+				catch (FileNotFoundException e) {
+				e.printStackTrace();
+				}
 						  
-			while(scan_main_text.hasNextLine()){		
-			s_file += scan_main_text.nextLine() + " ";
-			
-			}
-			scan_main_text.close();
-			//System.out.println(s_file);//*output		
-			}
+					while(scan_main_text.hasNextLine()){		
+					s_file += scan_main_text.nextLine() + " ";
+					
+					}
+					scan_main_text.close();
+					//System.out.println(s_file);//*output		
+					}
 
 public int words_volume() {
 //..COUNT ALL WORDS FROM DATATEXT
-			String[] text = s_file.split(" ");			//подсчет слов по количеству пробелов
-			int a = text.length;
+	String[] array_all_words = s_file.split(" ");	//подсчет слов по количеству пробелов
+	int volume = array_all_words.length;
 			
-			//сборка слов вновь в текст с пробелами
-			String result = "";
-			for(int i = 0; i < text.length; i++ ){
-			result = result + " " + text[i];
-			}
-	return a;
+//Options: сборка слов вновь в текст с пробелами
+//				String result = "";
+//				for(int i = 0; i < array_all_words.length; i++ ){
+//				result = result + " " + array_all_words[i];
+//				}				
+	return volume;
 }
 
 public int satz_volume() {
 //..COUNT ALL SATZ FROM DATATEXT
-			int point_count = 0;
-			char[] text = s_file.toCharArray();			//подсчет предложений по количеству точек
-			for(int i = 0; i < text.length; i++) {
-				if(text[i] == '.') point_count++;
-			}
+	int point_count = 0;
+	char[] array_of_symbol = s_file.toCharArray();			//подсчет предложений по количеству точек
+			
+		for(int i = 0; i < array_of_symbol.length; i++) {
+				if(array_of_symbol[i] == '.') point_count++;
+		}
 	return point_count;
 }
 
 public int vocabulary() {
 //..COUNT VOLUME DIFFRENT WORDS FROM DATATEXT
 //..словарный запас
-				int difference = 0;
-				String s = getClear_text(s_file);
+	int difference = 0;
+	String text = getClear_text(s_file);			
+	String[] array_all_words = text.split(" ");
+	HashSet<String> set = new HashSet<String>(); //вычисление различных слов через SET
 				
-				String[] text = s.split(" ");
-				HashSet<String> set = new HashSet<String>(); //вычисление различных слов через SET
-				for(int i = 0; i < text.length; i++) {
-					set.add(text[i]);
-				}
+		for(int i = 0; i < array_all_words.length; i++) {
+					set.add(array_all_words[i]);
+		}
 				difference = set.size();
-
-		return difference;
+	return difference;
 	}
 
-public String getClear_text(String s5){
+public String getClear_text(String fragment){
 //..DELETE ALL TRASH_SYMBOL FROM DATATEXT
 //..удаление лишних символов(точки, запятые и др.) и установление единого регистра
-			char[] text = s5.toCharArray();
+			char[] array_of_symbol = fragment.toCharArray();
 			ArrayList<Character> list = new ArrayList<Character>();
-			String s = "";
-			for(int i = 0; i < text.length; i++) {
-				text[i] = Character.toLowerCase(text[i]);
-				if(text[i] != '.' && text[i] != ',' && text[i] != '"' ) list.add(text[i]);
-			}
-			for(int i = 0; i < list.size(); i++){
-				s += list.get(i);	
-			}
-	return s;
+			String final_fragment = "";
+			
+				for(int i = 0; i < array_of_symbol.length; i++) {
+					array_of_symbol[i] = Character.toLowerCase(array_of_symbol[i]);
+					if(array_of_symbol[i] != '.' && array_of_symbol[i] != ',' && array_of_symbol[i] != '"' ) list.add(array_of_symbol[i]);
+				}
+					
+					for(int i = 0; i < list.size(); i++){
+						final_fragment += list.get(i);	
+					}
+	return final_fragment;
 }
 
+public String getClear_text2(String fragment){
+	//..DELETE ALL TRASH_SYMBOL FROM DATATEXT
+	//..удаление лишних символов(точки, запятые и др.) 
+				char[] array_of_symbol = fragment.toCharArray();
+				ArrayList<Character> list = new ArrayList<Character>();
+				String final_fragment = "";
+				
+					for(int i = 0; i < array_of_symbol.length; i++) {
+						if(array_of_symbol[i] != '.' && array_of_symbol[i] != ',' && array_of_symbol[i] != '"' && array_of_symbol[i] != ')' && array_of_symbol[i] != '»') list.add(array_of_symbol[i]);
+					}
+						
+						for(int i = 0; i < list.size(); i++){
+							final_fragment += list.get(i);	
+						}
+		return final_fragment;
+	}
+
+
 public void names(){
+//Первое слово из новай строки воспринимается как имя! 
+//	
+//	int abz = 0;
+//	byte [] s2 = s_file.getBytes();
+//
+//	for(int i = 0; i < s2.length; i++){
+//		if(s2[i] == 10)abz++;
+//	}
+//	System.out.println("колво АБЗ: " + abz);
+	
+	///////////////////ЕСЛИ ТОЧКА В МАССИВЕ УДАЛЯЕМ ОКРУЖАЮЩИЕ СИМВОЛЫ!!!!
+	
+	
+	////////////////////////////
 	char[] text = s_file.toCharArray();
+	ArrayList<Character> array = new ArrayList<Character>();
+	//array = (ArrayList<Character>) text;
+			
+			for(int q = 0; q < text.length; q++){
+			array.add(text[q]);
+			}
+		
+			
+			for(int q = 0; q < text.length; q++){
+				if(array.get(q) == '.'){
+//					array.remove(q);
+//					array.remove(q+1);
+//					array.remove(q+2);
+					//array.set(q, 'z');
+					array.set(q +1, ' ');
+					array.set(q+2, 'z');
+					//array.set(q-1, ' ');
+					array.set(q+3, 'z');
+					array.set(q+4, 'z');
+//					array.remove(q-1);
+//					array.remove(q-2);
+				}
+			}
+			
+			
+			
+	String text500 = "";
+	for(int q = 0; q < array.size(); q++){
+		
+		text500 = text500 + array.get(q);
+		
+		
+		
+	}
+	
+//	String[] version_two = s_file.split("\n");
+//	//System.out.println(s_file);
+//	for(int w = 0; w < version_two.length; w++){
+//		//text500 += version_two[w];
+//		System.out.println(version_two[w]);
+//	}
 	
 	
 //	for(int i = 2; i < text.length; i++){
@@ -124,28 +200,31 @@ public void names(){
 	HashSet<String> set = new HashSet<String>();
 	String s = "";
 	String last = "";
-	String[] text2 = s_file.split(" ");
+	String[] text2 = text500.split(" ");
+	
 	char ch = ' ';
 	boolean b = true;
+	
 	for(int ii = 0; ii < text2.length; ii++){
 		s = text2[ii];
 		if(ii > 0)last = text2[ii - 1];
 		char[] word = s.toCharArray();
 		char[] lst = last.toCharArray();
-			for(int k = 0; k < word.length; k++){
-				b = true;
-				ch = word[k];
-				if(Character.isUpperCase(ch)){
-						for(int j = 0; j < lst.length; j++){
-							if(lst[j] == '.'){b = false;break;}
+			
+				for(int k = 0; k < word.length; k++){
+						b = true;
+						ch = word[k];
+						if(Character.isUpperCase(ch)){
+								for(int j = 0; j < lst.length; j++){
+									if(lst[j] == '.'){b = false;break;}
+								}
+								if(b == true){
+							//System.out.println(s);
+							set.add(getClear_text(s));
+							break;
+							}
 						}
-						if(b == true){
-					//System.out.println(s);
-					set.add(getClear_text(s));
-					break;
 					}
-				}
-			}
 	}
 	//OUTPUT
 	for(String element : set){
@@ -153,29 +232,74 @@ public void names(){
 	}
 }
 
-public void numbers(){
-	String s = "";
-	String last = "";
-	String[] text2 = s_file.split(" ");
-	char ch = ' ';
-	boolean b = true;
-	for(int ii = 0; ii < text2.length; ii++){
-		s = text2[ii];
-		if(ii > 0)last = text2[ii - 1];
-		char[] word = s.toCharArray();
-		char[] lst = last.toCharArray();
-			for(int k = 0; k < word.length; k++){
-				b = true;
-				ch = word[k];
-				if(Character.isDigit(ch)){
-						
-					System.out.println(s);
-					
-					break;
-					
+public void names2(){
+//INTERFACE
+	System.out.println("-------------------------------------------------------------");
+	System.out.println("NAMES 2");
+	System.out.println();
+	
+	/*
+	 * Метод names() извлекает из текста Имена следующим образом:
+	 * Исходный текст преобразуется в массив символов
+	 * В массиве символов осуществляется поиск последовательности символов,
+	 * в данном случае это - символ верхнего регистра + пробел слева + точка после пробела,
+	 * либо другие варианты
+	 * Обнаружив искомую последовательность символов, формируется строка, которая и есть Имя
+	 * Имена добавляются в список
+	 */
+	
+	char[] array_all_symbol = s_file.toCharArray();
+	char symbol;
+	String name = "";
+	ArrayList<String> list_of_name = new ArrayList<String>();
+	
+		for(int i = 0; i < array_all_symbol.length; i++){
+			symbol = array_all_symbol[i];
+//Логика: ...
+				if(Character.isUpperCase(symbol) && array_all_symbol[i-1] == ' ' && array_all_symbol[i-2] != '.' && array_all_symbol[i-3] != '.' || Character.isUpperCase(symbol) && array_all_symbol[i-1] != ' '){
+//Формирование строки: символы преобразуются в строку до пробела
+						while(array_all_symbol[i] != ' '){
+							name +=  array_all_symbol[i];
+							i++;
+						}
+								list_of_name.add(getClear_text2(name));
+								name = "";
 				}
-			}
-	}
+		}
+		
+		for(String element : list_of_name){
+			System.out.println(element);
+		}
+		
+		System.out.println();
+}
+
+public void numbers(){
+	/*
+	 * Метод number() извлекает из текста числа следующим образом:
+	 * Исходный текст преобразуется в массив слов
+	 * Каждое слово массива преобразуется в массив символов
+	 * В массиве символов осуществляется поиск чисел
+	 * Если находим число, извлекаем все слово, и переходим к следующему слову
+	 */
+	String[] list_all_words = s_file.split(" ");
+	String word_of_list_all_words = "";
+	char[] list_of_sybol;
+	char symbol;
+	
+		for(int i = 0; i < list_all_words.length; i++){
+			word_of_list_all_words = list_all_words[i];
+			list_of_sybol = word_of_list_all_words.toCharArray();		
+//Ищем в слове (которое представлено набором символов) числа, и если находим, то извлекаем все слово			
+				for(int k = 0; k < list_of_sybol.length; k++){
+					symbol = list_of_sybol[k];
+					
+						if(Character.isDigit(symbol)){
+							System.out.println(word_of_list_all_words);	
+								break;	
+						}
+				}
+		}
 }
 
 public void text_structure(){
@@ -198,7 +322,7 @@ public void text_structure(){
 	for(String tes : set){
 		
 			for(String tsil : list){
-				if(tes.equals(tsil))countt++;
+				if(tes.equals(tsil))countt++; 
 				
 			}
 			
