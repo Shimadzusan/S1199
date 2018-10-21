@@ -28,7 +28,7 @@ public class Sage {
 		
 		System.out.println("-------------------------------------------------------------");
 		System.out.println("структура текста:");
-		//text_structure();
+		text_structure();
 //---------------------------------------------------------------------------------------------------*
 	}
 	
@@ -200,62 +200,72 @@ public void numbers(){
 }
 
 public void text_structure(){
-//..TEXT_STRUCTURE TYPE ONE
-	String s = getClear_text(main_text);
+	/*
+	 * Метод text_structure() выявляет структуру текста следующим образом:
+	 * Исходный текст очищается от лишних символов(запятые, точки и т.д.)
+	 * Очищенный текст преобразуется в массив слов
+	 * Из массива слов образуется два операционных массива: set and list
+	 * Новый операционный массив map_of_heap содержит количество упоминаний элементов массива set
+	 * в массиве list. Что и осталось упорядочить по возрастанию
+	 * В массиве map_of_heap осуществляется поиск самого большого числа, затем поиск строки с этим самым
+	 * большим числом, далее запись этой строки с самым большим числом в новый массив sorted_list,
+	 * и удаление отсортированной записи из map_of_heap
+	 * */
 	
-	String[] text = s.split(" ");			//..*PART FROM VOCABULARY_METHOD
-	HashSet<String> set = new HashSet<String>();
-	for(int i = 0; i < text.length; i++) {
-		set.add(text[i]);
-	}
-//**********************************************************************
-	ArrayList<String> list = new ArrayList<String>();
-	for(String d : text){
-		list.add(d);
-	}
-	//System.out.println("size list: " + list.size());
-	HashMap<String, Integer> map = new HashMap<String, Integer>();
-	int countt = 0;
-	for(String tes : set){
-		
-			for(String tsil : list){
-				if(tes.equals(tsil))countt++; 
-				
+	String text = getClear_text(main_text);
+	String[] list_all_words = text.split(" ");
+//**********************************************************************	
+		HashSet<String> set = new HashSet<String>();
+			for(int i = 0; i < list_all_words.length; i++) {
+				set.add(list_all_words[i]);
 			}
+	
+		ArrayList<String> list = new ArrayList<String>();
+			for(String element : list_all_words){
+				list.add(element);
+			}
+//**********************************************************************
 			
-			//System.out.println(tes + " | " + countt);
-			map.put(tes, countt);
-			countt = 0;
-	}
-	ArrayList<String> list2 = new ArrayList<String>();
-	String list2a = "";
-	//****while
+	HashMap<String, Integer> map_of_heap = new HashMap<String, Integer>();
+	int count = 0;
+	
+		for(String element_of_set : set){
+			
+				for(String element_of_list : list){
+					if(element_of_set.equals(element_of_list))count++; 	
+				}
+					map_of_heap.put(element_of_set, count);
+					count = 0;
+		}
+//**********************************************************************
+	ArrayList<String> sorted_list = new ArrayList<String>();
+	String element_of_sorted_list = "";
 	int big = 0;
-	while(map.size() != 0)
-	{
-	for(HashMap.Entry<String, Integer> google : map.entrySet()){
-		//System.out.println(google.getKey() + " | " + google.getValue());
-		//map.remove(key, value);
-		if(big < google.getValue())big = google.getValue();
+	
+	while(map_of_heap.size() != 0){
 		
+		for(HashMap.Entry<String, Integer> super_number : map_of_heap.entrySet()){
+//Осуществляем поиск самого большого числа из map_of_heap
+			if(big < super_number.getValue())big = super_number.getValue();
+		}
+		
+			for(HashMap.Entry<String, Integer> row : map_of_heap.entrySet()){
+//Осуществляем поиск KEY с самым большим числом в map_of_heap	
+				if(row.getValue() == big){
+					element_of_sorted_list = row.getKey() + " | " + row.getValue();
+						sorted_list.add(element_of_sorted_list);
+//Удаление и обнуление
+							map_of_heap.remove(row.getKey(), row.getValue());
+								big = 0;
+									break;
+				}
+			}
 	}
 	
-	for(HashMap.Entry<String, Integer> google2 : map.entrySet()){
-		if(google2.getValue() == big){
-			list2a = google2.getKey() + " | " + google2.getValue();
-			list2.add(list2a);
-			map.remove(google2.getKey(), google2.getValue());
-			big = 0;
-			break;
-	}
-	}
-//	big = 0;
-	}
 	System.out.println("++++++++++++++++++++++++");
-	for(String gg : list2){
-		System.out.println(gg);
-	}
-//******************************************************************************
+		for(String element : sorted_list){
+			System.out.println(element);
+		}
 }
 
 public void text_structure2(){
