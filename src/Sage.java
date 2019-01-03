@@ -7,13 +7,28 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Sage {
+	/* Блок основных переменных:
+	 * количество символов(с пробелами и без)
+	 * количество слов
+	 * -//-//- пледложений
+	 * словарный запас
+	 * имена
+	 * числа
+	 * логические связки(и, или, не, а, если...) 
+	 */
+	
+	
 	String main_text = "";
 	
 	Sage(){
+		
+	}
+	
+	Sage(String text){
 //-----------------------MAIN INTERFACE--------------------------------------------------------------*
 		System.out.println("Interface of output!");
 		System.out.println("...text from*");
-		loding_data();
+		main_text = loding_data(text);
 		System.out.println("количество символов: с пробелами - " + main_text.length() + ", без пробелов - " + (main_text.length() - words_volume()));
 		System.out.println("количество слов: " + words_volume());
 		System.out.println("словарный запас: " + vocabulary());
@@ -32,11 +47,12 @@ public class Sage {
 //---------------------------------------------------------------------------------------------------*
 	}
 	
-public void loding_data() {
+public String loding_data(String path) {
 //..LODING DATA INTO MEMORY FROM LOCATION ON H.D.D
 //INPUT: FILE ON HARD DISK
 //OUTPUT: VARIABLE TYPE STRING
-			File text_from_file = new File("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");//*input
+	String text = "";
+			File text_from_file = new File(path);//*input
 			Scanner scan_main_text = null;
 				
 				try {
@@ -47,7 +63,7 @@ public void loding_data() {
 				}
 						  
 					while(scan_main_text.hasNextLine()){		
-						main_text += scan_main_text.nextLine() + " ";
+						text += scan_main_text.nextLine() + " ";
 					
 					}
 					scan_main_text.close();
@@ -55,7 +71,8 @@ public void loding_data() {
 //Добавление "абракадабры" для чего смотри метод names()
 					//main_text = "qwertyu. " + main_text + " uytrewq";
 					//System.out.println(main_text);//*output
-					}
+return text;					
+}
 
 public int words_volume() {
 //..COUNT ALL WORDS FROM DATATEXT
