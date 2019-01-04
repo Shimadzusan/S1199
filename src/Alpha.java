@@ -2,6 +2,8 @@ import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Alpha {
 
@@ -19,6 +21,7 @@ class Structure_of_the_text{
 	ArrayList<String> just_array = new ArrayList<String>();
 	
 	String main_text;
+	private boolean flag;
 	
 	Structure_of_the_text(String text) {
 		System.out.println("...structure_of_the_text");
@@ -31,9 +34,9 @@ class Structure_of_the_text{
 	System.out.println(var_alpha);
 	System.out.println(var_alpha - size);
 	
-	for(String element : just_array){
-		System.out.println(element);
-	}
+//	for(String element : just_array){
+//		System.out.println(element);
+//	}
 				//System.out.println(main_text.length());
 	}
 
@@ -122,16 +125,16 @@ public void text_structure_two(){
 	 * */
 	
 	String text = getClear_text(main_text);
-	String[] list_all_words = text.split(" ");
+	String[] array_all_words = text.split(" ");
 //**********************************************************************	
 		HashSet<String> set = new HashSet<String>();
-			for(int i = 0; i < list_all_words.length; i++) {
-				set.add(list_all_words[i]);
+			for(int i = 0; i < array_all_words.length; i++) {
+				set.add(array_all_words[i]);
 			}
 	
-		ArrayList<String> list = new ArrayList<String>();
-			for(String element : list_all_words){
-				list.add(element);
+		ArrayList<String> list_all_words = new ArrayList<String>();
+			for(String element : array_all_words){
+				list_all_words.add(element);
 			}
 //Part II
 //input data: HashSet
@@ -141,58 +144,125 @@ System.out.println("PART II ====================================================
 	String word_one = "";
 	String word_two = "";
 	
+	TreeSet<String> tree_set = new TreeSet<String>();
+	
 	ArrayList<String> list_of_set_one = new ArrayList<String>(set);
 	ArrayList<String> list_of_set_two = new ArrayList<String>(set);
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	for(int i = 0; i < list_of_set_one.size(); i++) {
 		word_one = list_of_set_one.get(i);
-		//System.out.println(element);
-		
-		for(int k = 0; k < list_of_set_two.size(); k++) {
-			//System.out.println(element_betta);
-			word_two = list_of_set_two.get(k);
-			method_alpha(word_one, word_two);
-//			if(word_one.equals(word_two)){
-//		
-//				list_of_set_two.remove(k);
-//			}
-//			else{
-//			method_alpha(word_one, word_two);
-//			}
-		}
+		String word_three = word_one;
+		for(int k = i; k < list_of_set_one.size(); k++) {
 			
-	}
-	System.out.println(set.size());
-	size = set.size();
-}
-
-private void method_alpha(String word_one, String word_two) {
-	
+			word_two = list_of_set_one.get(k);
+//Входные данные 2 ключевых слова
+//Два метода вместо предполагаемых шести))
+//=====================================================================================
+//First method
 	if(word_one.length() > 3 && word_one != word_two && (word_one.length() == word_two.length())) {
-		
-		char[] char_one = word_one.toCharArray();
-		String word_one_a = "";
-		char[] char_two = word_two.toCharArray();
-		String word_two_a = "";
-		
-			for(int i = 0; i < char_one.length - 1; i++){
-				word_one_a += "" + char_one[i];
+				
+				char[] char_one = word_one.toCharArray();
+				String word_one_a = "";
+				char[] char_two = word_two.toCharArray();
+				String word_two_a = "";
+				
+					for(int j = 0; j < char_one.length - 2; j++){
+						word_one_a += "" + char_one[j];
+					}
+					
+					for(int j = 0; j < char_two.length - 2; j++){
+						word_two_a += "" + char_two[j];
+					}
+						
+						if(word_one_a.equals(word_two_a)){
+							word_three += " " +  word_two;
+								//System.out.println(word_three);
+									list_of_set_one.remove(k);
+										i++;
+						}
 			}
 			
-			for(int i = 0; i < char_two.length - 1; i++){
-				word_two_a += "" + char_two[i];
-			}
+//Second method
+	if(word_one.length() > 4 &&  (word_one.length() - word_two.length() <= 2 && word_one.length() - word_two.length() >= -2 ) && word_one.length() - word_two.length() != 0 ) {
 				
-				if(word_one_a.equals(word_two_a)){
-				
-		just_array.add(word_two);
-		System.out.println(word_one + " | " + word_two);
-				}
+						if(word_one.length() > word_two.length()){
+							int index = word_one.length() - word_two.length();
+						char[] char_one = word_one.toCharArray();
+						String word_one_a = "";
+						char[] char_two = word_two.toCharArray();
+						String word_two_a = "";
+						
+							for(int j = 0; j < (char_one.length - index) - 1; j++){
+								word_one_a += "" + char_one[j];
+							}
+							
+							for(int j = 0; j < char_two.length - 1; j++){
+								word_two_a += "" + char_two[j];
+							}
+								
+								if(word_one_a.equals(word_two_a)){
+										word_three += " " +  word_two;
+											//System.out.println(word_three);
+												list_of_set_one.remove(k);
+													i++;
+								}
+						}		
+			}	
+		}
+		
+		tree_set.add(word_three);	
 	}
+	
+	for(String element : tree_set){
+		System.out.println(element);
+	}
+//======================================================================================================
+	ArrayList<String> list5 = new ArrayList<String>(tree_set);
+	ArrayList<String[]> list6 = new ArrayList<String[]>();
+		for(int j = 0; j < list5.size(); j++){
+			String s = list5.get(j);
+			String[] ss = s.split(" ");
+			list6.add(ss);
+		}
+		
+		System.out.println(list5.size() + " " + list6.size());
+//Теперь работаем с list_all_words and list6
+		TreeMap<String[], Integer> map = new TreeMap<String[], Integer>();
+
+	
 }
 
-//**********************************************************************
-
+//private void method_alpha(String word_one, String word_two) {
+//	// необходимо реализовать 6 + 1 методов!!!
+//	
+//	boolean flag = false;
+//	if(word_one.length() > 1 && word_one != word_two && (word_one.length() == word_two.length())) {
+//		flag = true;
+//		char[] char_one = word_one.toCharArray();
+//		String word_one_a = "";
+//		char[] char_two = word_two.toCharArray();
+//		String word_two_a = "";
+//		
+//			for(int i = 0; i < char_one.length - 1; i++){
+//				word_one_a += "" + char_one[i];
+//			}
+//			
+//			for(int i = 0; i < char_two.length - 1; i++){
+//				word_two_a += "" + char_two[i];
+//			}
+//				
+//				if(word_one_a.equals(word_two_a)){
+//				
+//		just_array.add(word_two);
+//		System.out.println(word_one + " | " + word_two);
+//				}
+//	}
+//	//return flag;
+//}
+//
+////**********************************************************************
+//
 
 public String getClear_text(String fragment){
 	//..DELETE ALL TRASH_SYMBOL FROM DATATEXT
@@ -203,7 +273,7 @@ public String getClear_text(String fragment){
 				
 					for(int i = 0; i < array_of_symbol.length; i++) {
 						array_of_symbol[i] = Character.toLowerCase(array_of_symbol[i]);
-						if(array_of_symbol[i] != '.' && array_of_symbol[i] != ',' && array_of_symbol[i] != '"' ) list.add(array_of_symbol[i]);
+						if(array_of_symbol[i] != '.' && array_of_symbol[i] != ',' && array_of_symbol[i] != '"'&& array_of_symbol[i] != '-'&& array_of_symbol[i] != '?' && array_of_symbol[i] != '«' && array_of_symbol[i] != '—' && array_of_symbol[i] != '(' && array_of_symbol[i] != ')' && array_of_symbol[i] != '»') list.add(array_of_symbol[i]);
 					}
 						
 						for(int i = 0; i < list.size(); i++){
