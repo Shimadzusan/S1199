@@ -2,6 +2,7 @@ import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -16,6 +17,8 @@ public class Alpha {
 }
 
 class Structure_of_the_text{
+	public String[] array_all_words;
+	
 	int var_alpha = 0;
 	int size;
 	ArrayList<String> just_array = new ArrayList<String>();
@@ -125,7 +128,7 @@ public void text_structure_two(){
 	 * */
 	
 	String text = getClear_text(main_text);
-	String[] array_all_words = text.split(" ");
+	array_all_words = text.split(" ");
 //**********************************************************************	
 		HashSet<String> set = new HashSet<String>();
 			for(int i = 0; i < array_all_words.length; i++) {
@@ -185,8 +188,8 @@ System.out.println("PART II ====================================================
 			
 //Second method
 	if(word_one.length() > 4 &&  (word_one.length() - word_two.length() <= 2 && word_one.length() - word_two.length() >= -2 ) && word_one.length() - word_two.length() != 0 ) {
-				
-						if(word_one.length() > word_two.length()){
+	///!!!ONE			
+						if(word_one.length() > word_two.length()){ //!!!
 							int index = word_one.length() - word_two.length();
 						char[] char_one = word_one.toCharArray();
 						String word_one_a = "";
@@ -207,7 +210,32 @@ System.out.println("PART II ====================================================
 												list_of_set_one.remove(k);
 													i++;
 								}
-						}		
+						}
+						///!!!TWO
+						
+						if(word_one.length() < word_two.length()){//!!!
+							int index = word_two.length()  - word_one.length();
+						char[] char_one = word_one.toCharArray();
+						String word_one_a = "";
+						char[] char_two = word_two.toCharArray();
+						String word_two_a = "";
+						
+							for(int j = 0; j < char_one.length - 1; j++){
+								word_one_a += "" + char_one[j];
+							}
+							
+							for(int j = 0; j < (char_two.length - index) - 1; j++){
+								word_two_a += "" + char_two[j];
+							}
+								
+								if(word_one_a.equals(word_two_a)){
+										word_three += " " +  word_two;
+											//System.out.println(word_three);
+												list_of_set_one.remove(k);
+													i++;
+								}
+						}
+						
 			}	
 		}
 		
@@ -228,9 +256,45 @@ System.out.println("PART II ====================================================
 		
 		System.out.println(list5.size() + " " + list6.size());
 //Теперь работаем с list_all_words and list6
-		TreeMap<String[], Integer> map = new TreeMap<String[], Integer>();
+		TreeMap<String, Integer> map = new TreeMap<String, Integer>();
+		
+		
+		for(String s10 : list5){
+			int number = 0;
+			String[] s = s10.split(" ");
+			for(int i = 0; i < s.length; i++){
+				number += get_number(s[i]);
+			}
+			
+			map.put(s10, number);
+			
+		}
+		for(Map.Entry<String, Integer> s_number : map.entrySet()){
+//			String[] s;
+//			s = s_number.getKey();
+//			int z = s_number.getValue();
+//			for(int i = 0; i < s.length; i++){
+//				System.out.print(s[i] + " ");
+//			}
+//			System.out.println(z);
+		
+			System.out.println(s_number.getKey() + " | " + s_number.getValue());
+		}
+		 map.entrySet().stream()
+	        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed()) 
+	        .forEach(System.out::println); // или любой другой конечный метод
+		
 
 	
+}
+
+private int get_number(String string) {
+	
+	int i = 0;
+	for(int n = 0; n < array_all_words.length; n++) {
+		if(string.equals(array_all_words[n]))i++;
+	}
+	return i;
 }
 
 //private void method_alpha(String word_one, String word_two) {
