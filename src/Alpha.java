@@ -18,11 +18,9 @@ public class Alpha {
 
 class Structure_of_the_text{
 	public String[] array_all_words;
-	
 	int var_alpha = 0;
 	int size;
-	ArrayList<String> just_array = new ArrayList<String>();
-	
+	ArrayList<String> just_array = new ArrayList<String>();	
 	String main_text;
 	private boolean flag;
 	
@@ -31,11 +29,15 @@ class Structure_of_the_text{
 			Sage sage = new Sage();
 				this.main_text = sage.loding_data(text);
 				
-//======================================================
+//====Переключение двух различных режимов: text_structure и text_structure_two
+//text_structure: без группировки слов
+//text_structure_two: с группировкой слов
+				
 	//text_structure();
 	text_structure_two();
-	System.out.println(var_alpha);
-	System.out.println(var_alpha - size);
+	
+		System.out.println(var_alpha);
+		System.out.println(var_alpha - size);
 	
 //	for(String element : just_array){
 //		System.out.println(element);
@@ -120,6 +122,8 @@ public void text_structure_two(){
 	 * Исходный текст очищается от лишних символов(запятые, точки и т.д.)
 	 * Очищенный текст преобразуется в массив слов
 	 * Из массива слов образуется два операционных массива: set and list
+	 * 
+	 * 
 	 * Новый операционный массив map_of_heap содержит количество упоминаний элементов массива set
 	 * в массиве list. Что и осталось упорядочить по возрастанию
 	 * В массиве map_of_heap осуществляется поиск самого большого числа, затем поиск строки с этим самым
@@ -139,113 +143,118 @@ public void text_structure_two(){
 			for(String element : array_all_words){
 				list_all_words.add(element);
 			}
+//**********************************************************************
 //Part II
 //input data: HashSet
 //output data: List<String[]>
 System.out.println();
-System.out.println("PART II =========================================================");
+System.out.println("PART II ============================================");
 	String word_one = "";
 	String word_two = "";
 	
 	TreeSet<String> tree_set = new TreeSet<String>();
 	
 	ArrayList<String> list_of_set_one = new ArrayList<String>(set);
-	ArrayList<String> list_of_set_two = new ArrayList<String>(set);
+	//ArrayList<String> list_of_set_two = new ArrayList<String>(set);
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++Цикл в котором происходит вся операция выявления++++++++++++++
 	for(int i = 0; i < list_of_set_one.size(); i++) {
 		word_one = list_of_set_one.get(i);
 		String word_three = word_one;
-		for(int k = i; k < list_of_set_one.size(); k++) {
-			
-			word_two = list_of_set_one.get(k);
+	
+			for(int k = i; k < list_of_set_one.size(); k++) {
+				word_two = list_of_set_one.get(k);
 //Входные данные 2 ключевых слова
 //Два метода вместо предполагаемых шести))
-//=====================================================================================
-//First method
+//========================================================================
+//First method: Слова с одинаковым количеством символов
+//Значение 3 указывает на длину сортируемых слов
 	if(word_one.length() > 3 && word_one != word_two && (word_one.length() == word_two.length())) {
 				
-				char[] char_one = word_one.toCharArray();
-				String word_one_a = "";
-				char[] char_two = word_two.toCharArray();
-				String word_two_a = "";
-				
-					for(int j = 0; j < char_one.length - 2; j++){
-						word_one_a += "" + char_one[j];
-					}
+		char[] char_one = word_one.toCharArray();
+		String word_one_a = "";
+		char[] char_two = word_two.toCharArray();
+		String word_two_a = "";
+			
+			for(int j = 0; j < char_one.length - 2; j++){
+				word_one_a += "" + char_one[j];
+			}
 					
-					for(int j = 0; j < char_two.length - 2; j++){
-						word_two_a += "" + char_two[j];
-					}
-						
-						if(word_one_a.equals(word_two_a)){
-							word_three += " " +  word_two;
-								//System.out.println(word_three);
-									list_of_set_one.remove(k);
-										i++;
-						}
+			for(int j = 0; j < char_two.length - 2; j++){
+				word_two_a += "" + char_two[j];
 			}
 			
-//Second method
+				if(word_one_a.equals(word_two_a)){
+					word_three += " " +  word_two;
+//System.out.println(word_three);
+						list_of_set_one.remove(k);
+							i++;
+				}
+	}
+//======================================================================	
+//Second method: Слова одинаковые по смыслу, НО разные по количеству символов
+//Значение 4 указывает на длину сортируемых слов
+//Значение 2 указывает на разницу в количестве сортируемых слов
 	if(word_one.length() > 4 &&  (word_one.length() - word_two.length() <= 2 && word_one.length() - word_two.length() >= -2 ) && word_one.length() - word_two.length() != 0 ) {
-	///!!!ONE			
-						if(word_one.length() > word_two.length()){ //!!!
-							int index = word_one.length() - word_two.length();
-						char[] char_one = word_one.toCharArray();
-						String word_one_a = "";
-						char[] char_two = word_two.toCharArray();
-						String word_two_a = "";
-						
-							for(int j = 0; j < (char_one.length - index) - 1; j++){
-								word_one_a += "" + char_one[j];
-							}
+//Alpha			
+		if(word_one.length() > word_two.length()) { //!!!
+			int index = word_one.length() - word_two.length();
+			char[] char_one = word_one.toCharArray();
+			char[] char_two = word_two.toCharArray();
+			String word_one_a = "";
+			String word_two_a = "";
+					
+				for(int j = 0; j < (char_one.length - index) - 1; j++){
+					word_one_a += "" + char_one[j];
+				}
 							
-							for(int j = 0; j < char_two.length - 1; j++){
-								word_two_a += "" + char_two[j];
-							}
+				for(int j = 0; j < char_two.length - 1; j++){
+					word_two_a += "" + char_two[j];
+				}
 								
-								if(word_one_a.equals(word_two_a)){
-										word_three += " " +  word_two;
-											//System.out.println(word_three);
-												list_of_set_one.remove(k);
-													i++;
-								}
-						}
-						///!!!TWO
-						
-						if(word_one.length() < word_two.length()){//!!!
-							int index = word_two.length()  - word_one.length();
-						char[] char_one = word_one.toCharArray();
-						String word_one_a = "";
-						char[] char_two = word_two.toCharArray();
-						String word_two_a = "";
-						
-							for(int j = 0; j < char_one.length - 1; j++){
-								word_one_a += "" + char_one[j];
-							}
-							
-							for(int j = 0; j < (char_two.length - index) - 1; j++){
-								word_two_a += "" + char_two[j];
-							}
-								
-								if(word_one_a.equals(word_two_a)){
-										word_three += " " +  word_two;
-											//System.out.println(word_three);
-												list_of_set_one.remove(k);
-													i++;
-								}
-						}
-						
-			}	
+					if(word_one_a.equals(word_two_a)){
+						word_three += " " +  word_two;
+//System.out.println(word_three);
+							list_of_set_one.remove(k);
+								i++;
+					}
 		}
-		
+//Betta				
+		if(word_one.length() < word_two.length()) { //!!!
+			int index = word_two.length()  - word_one.length();
+			char[] char_one = word_one.toCharArray();
+			char[] char_two = word_two.toCharArray();
+			String word_one_a = "";
+			String word_two_a = "";
+			
+				for(int j = 0; j < char_one.length - 1; j++){
+					word_one_a += "" + char_one[j];
+				}
+							
+				for(int j = 0; j < (char_two.length - index) - 1; j++){
+					word_two_a += "" + char_two[j];
+				}
+								
+					if(word_one_a.equals(word_two_a)){
+						word_three += " " +  word_two;
+//System.out.println(word_three);
+							list_of_set_one.remove(k);
+								i++;
+					}
+		}
+	}	
+//========================================================================
+		}
 		tree_set.add(word_three);	
 	}
+//Вывод отсортированного списка одинаковых слов по смыслу:
+// ...планета, планеты, планете, планет
+//	for(String element : tree_set){
+//		System.out.println(element);
+//	}
 	
-	for(String element : tree_set){
-		System.out.println(element);
-	}
-//======================================================================================================
+//========================================================================
+//Здесь выполняется рассчет количества одинаковых слов по смыслу==========
 	ArrayList<String> list5 = new ArrayList<String>(tree_set);
 	ArrayList<String[]> list6 = new ArrayList<String[]>();
 		for(int j = 0; j < list5.size(); j++){
@@ -254,7 +263,7 @@ System.out.println("PART II ====================================================
 			list6.add(ss);
 		}
 		
-		System.out.println(list5.size() + " " + list6.size());
+		System.out.println("Проверка: " + list5.size() + " " + list6.size());
 //Теперь работаем с list_all_words and list6
 		TreeMap<String, Integer> map = new TreeMap<String, Integer>();
 		
@@ -269,17 +278,14 @@ System.out.println("PART II ====================================================
 			map.put(s10, number);
 			
 		}
-		for(Map.Entry<String, Integer> s_number : map.entrySet()){
-//			String[] s;
-//			s = s_number.getKey();
-//			int z = s_number.getValue();
-//			for(int i = 0; i < s.length; i++){
-//				System.out.print(s[i] + " ");
-//			}
-//			System.out.println(z);
-		
-			System.out.println(s_number.getKey() + " | " + s_number.getValue());
-		}
+//ВЫвод списка не упорядоченного по значению	
+//		for(Map.Entry<String, Integer> s_number : map.entrySet()){
+//		
+//			System.out.println(s_number.getKey() + " | " + s_number.getValue());
+//		}
+//Вывод списка упорядоченного по значению
+		System.out.println();
+		System.out.println("Вывод списка упорядоченного по значению:");
 		 map.entrySet().stream()
 	        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed()) 
 	        .forEach(System.out::println); // или любой другой конечный метод
