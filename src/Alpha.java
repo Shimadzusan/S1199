@@ -9,9 +9,11 @@ import java.util.TreeSet;
 public class Alpha {
 
 	public static void main(String[] args) {
-		//new Sage("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");
-		new Structure_of_the_text("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");
-		 // E:\\Java\\словари for S-1199\\2019\\dict_opcorpora.txt
+		new Sage("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");
+		
+		//new Structure_of_the_text("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");
+		
+		// E:\\Java\\словари for S-1199\\2019\\dict_opcorpora.txt
 	 
 	}
 }
@@ -286,9 +288,10 @@ System.out.println("PART II ============================================");
 //Вывод списка упорядоченного по значению
 		System.out.println();
 		System.out.println("Вывод списка упорядоченного по значению:");
-		 map.entrySet().stream()
-	        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed()) 
-	        .forEach(System.out::println); // или любой другой конечный метод
+		
+			 map.entrySet().stream()
+		        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed()) 
+		        .forEach(System.out::println); // или любой другой конечный метод
 		
 
 	

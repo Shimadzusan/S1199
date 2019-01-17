@@ -43,7 +43,12 @@ public class Sage {
 		
 		System.out.println("-------------------------------------------------------------");
 		System.out.println("структура текста:");
-		text_structure();
+		//text_structure();
+		
+		System.out.println("-------------------------------------------------------------");
+		System.out.println("логические связки:");
+		vocab_of_retoric();
+		
 //---------------------------------------------------------------------------------------------------*
 	}
 	
@@ -285,111 +290,32 @@ public void text_structure(){
 		}
 }
 
-public void text_structure2(){
-//..TEXT_STRUCTURE TYPE TWO
-	ArrayList<String> clonset = new ArrayList<String>();
-	ArrayList<String> clonset2 = new ArrayList<String>();
-//	for(String element : set){
-//		clonset.add(element);
-//		
-//	}
-	//System.out.println("size" + clonset.size());
-	clonset2 = clonset;
-	String ss = "";
-	String s3 = "";
-	int count = 0;
-	///+++++++++++++++++++++++++++++++++++
-	for(int i = 0; i < clonset.size(); i++){
-		ss = clonset.get(i);
-			for(int ii = i; ii < clonset.size(); ii++){
-				
-			}
-		
-	}
-	///+++++++++++++++++++++++++++++++++++
+public void vocab_of_retoric(){
 	/*
-	//////////////////////******
-//	for(int y = 0; y < clonset.size(); y++){
-//		ss = clonset.get(y);
-//				for(int i = 0; i < clonset2.size(); i++){
-//					if(ss.equals(clonset2.get(i)))
-//					{
-//						clonset.remove(y);
-//						System.out.println(ss + "1" + clonset2.get(i));
-//					}
-//				}
-//	}
-//	ss="";
-//	System.out.println(clonset.size());
-//	System.out.println(clonset2.size());
-//	System.out.println(set.size());
-	//////////////////////********
-	for(int i = 0; i < clonset.size(); i++){
-		ss = clonset.get(i);
-		int a = ss.length() - 2;
-		int b = ss.length() + 2;
-			//System.out.println(ss + " diapason: " + a + " " + b);
-		for(int k = 0; k < clonset2.size(); k++){
-			
-			s3 = clonset2.get(k);
-			s3.length();
-			//System.out.println(count++);
-						String a1 = delete_last(ss);
-						String b1 = delete_two_last(ss);
-						String c1 = delete_last(s3);
-						String d1 = delete_two_last(s3);
-					if( s3.length() > 3 && a < s3.length() && s3.length() < b){
-						
-						//1
-						
-						//
-			
-//							//delete last
-//							//and delete two last
-							if(ss.equals(c1) || ss.equals(a1)  || ss.equals(b1) ||ss.equals(d1)){
-								System.out.println("22"  + ss + " | " + s3);//break;
-								
-								//System.out.println(ss + ", "+ s3+ ", "+ a1+ ", "+ b1+ ", "+ c1+ ", "+ d1+ ", ");
-								//System.out.println(count++);//break;
-							}
-							if(d1.equals(ss)){
-								
-							}
-//							
-//							
-//						
-//						//2
-//						
-							//delete last
-							//and delete two last
-							
-							if(s3.equals(a1)){
-								System.out.println("55"  + ss + " | " + s3);//break;
-								for(int x = 0; x < clonset2.size(); x++){
-									if(s3.equals(clonset2.get(x))){
-										clonset2.remove(x);
-									}
-								}
-								//System.out.println("3");//break;
-							}
-//							if(a1.equals(c1) && s3.equals(ss) == false){
-//								System.out.println("44"  + ss + " | " + s3);//break;
-//							}
-							
-							
-							
-						
-					}
-					
-			}
-	}
+	 * Метод number() извлекает из текста числа следующим образом:
+	 * 
+	 */
 	
-	
-	*/
-	
-	//************************************************************
-	
-	}
+	int con = 0;
+	int dis = 0;
+	int not = 0;
+	int impl = 0;
+	String element_of_list = "";
+	String[] list_all_words = main_text.split(" ");
+		for(int i = 0; i < list_all_words.length; i++) {
+			element_of_list = getClear_text2(list_all_words[i]);
+				
+			if(element_of_list.equals("и"))con++;
+			if(element_of_list.equals("или"))dis++;
+			if(element_of_list.equals("не"))not++;
+			if(element_of_list.equals("если"))impl++;
+		}
+	System.out.println("конъюнкция(логическое \"и\"):    " + con);
+	System.out.println("дизъюнкция(логическое \"или\"):  " + dis);
+	System.out.println("отрицание(логическое \"не\"):    " + not);
+	System.out.println("импликация(логическое \"если\"): " + impl);
+}
+
 //..вспомогательные методы для вычисления структуры текста---------------------------*
 public String delete_last(String h){
 	char[] ch = h.toCharArray();
