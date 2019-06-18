@@ -10,6 +10,7 @@
 
 </head>
 	<body bgcolor = #d4dee4>
+	<form method = "POST" action = "Servlet_one">
        
             
             <div id="object_button">
@@ -39,13 +40,14 @@
             
             <div style="color: white; width: 69.2%; height: 300px; background: #46AF97; font-family: Roman; border: solid 1px black;  float: left">
                 
-                 <form method = "POST" action = "Servlet_one">
                
                 <p align="center"><textarea  name= "comment" style= "background-color: #ffe; color: #930; cols: 100; rows: 65; width: 97%; height: 200px"></textarea></p>
                  <p align="center"><input  onclick="my_f()" id="mybutton" type = "submit" value = "Проверить текст">&nbsp;
             <input type = "submit" value = "Загрузить файл"> &nbsp;<input type = "submit" value = "Сохранить отчет">
             </p>
-            </form>
+         
+            
+            
             
             </div>
 <! modul_two>
@@ -53,13 +55,16 @@
              <script src="script.js"></script>
             
             
-            <div style="color: white; width: 30%; height: 300px; background: #1C6956; font-family: Roman; border: solid 1px black; float: right"> <p><input name="dzen" type="checkbox" value="pdzen" >&nbsp; &nbsp; &nbsp; Имена</p>
-    <p><input name="dzen" type="checkbox" value="pdzen" >&nbsp; &nbsp; &nbsp; Числа</p>
-    <p><input name="dzen" type="checkbox" value="pdzen" >&nbsp; &nbsp; &nbsp; Логические связки</p>
+    <div style="color: white; width: 30%; height: 300px; background: #1C6956; font-family: Roman; border: solid 1px black; float: right">
+    
+    <p><input name="family" type="checkbox" value="pdzen" >&nbsp; &nbsp; &nbsp; Имена</input></p>
+    <p><input name="number" type="checkbox" value="true" >&nbsp; &nbsp; &nbsp; Числа</p>
+    <p><input name="logic" type="checkbox" value="true" >&nbsp; &nbsp; &nbsp; Логические связки</p>
     <p><input name="dzen" type="checkbox" value="pdzen" >&nbsp; &nbsp; &nbsp; Риторические словари</p>
     <p><input name="dzen" type="checkbox" value="pdzen" >&nbsp; &nbsp; &nbsp; Структура текста</p>
     <br>&nbsp; &nbsp;
     <br>&nbsp; &nbsp;
+    
             </div>
 <! modul_three>
             <div style="height: 320px;">
@@ -78,12 +83,30 @@
                 <br> Посмотрите на иллюстрацию и попробуйте составить слова. Всегда начинайте с корневого узла вверху и спускайтесь вниз. Это дерево содержит следующие слова: ball, bat, doll, do, dork, dorm, send, sense.
                 </p>
                 <%
-//s.get_x();
-out.println("all symbols: " + Buffer.lenght);
-
-%>
                 
+out.println("all symbols: " + Buffer.lenght);%>
+<br><%
+out.println("all symbols without space: " + Buffer.lenght2);%>
+<br><%
+out.println("all sentence: " + Buffer.lenght3);
+
+%><br>
+   <%if(Buffer.logic == true) {
+
+out.println("con: " + Buffer.con);%>
+<br><%
+out.println("dis: " + Buffer.dis);%>
+<br><%
+out.println("not: " + Buffer.not);
+
+%> 
+<br><%
+out.println("impl: " + Buffer.impl);
+                }
+
+%>              
             </div>
-            
+            <br>
+            </form>
         </body>  
 </html>

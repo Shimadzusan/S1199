@@ -9,9 +9,8 @@ import java.util.TreeSet;
 public class Alpha {
 
 	public static void main(String[] args) {
-		new Sage("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");
-		
-		//new Structure_of_the_text("C:\\Users\\Stalin\\workspace\\S1199\\text.txt");
+		//new Sage("C:\\Users\\user\\eclipse-workspace\\S1199\\text.txt");
+		new Structure_of_the_text("C:\\Users\\user\\eclipse-workspace\\S1199\\text.txt");
 		
 		// E:\\Java\\словари for S-1199\\2019\\dict_opcorpora.txt
 	 
