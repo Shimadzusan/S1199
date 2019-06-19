@@ -1,28 +1,33 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
-public class Betta {
+public class Hamma {
 	String main_text = "";
-	boolean logic;
+	boolean name, number, logic, retoric, text_structure;
 	
-	public Betta(String web_text, boolean lg) {
-		this.main_text = web_text;
-		this.logic = lg;
-		if(this.logic == true) {
-			Buffer.logic = true;
-			vocab_of_retoric();
-			
-		}
-		else {
-			Buffer.logic = false;
-		}
+	Finalable final_instance;
+	
+	public Hamma(Samplable sample) {
+		this.main_text = sample.get_text();
+		this.name = sample.get_name();
+		this.number = sample.get_number();
+		this.logic = sample.get_logic();
+		this.retoric = sample.get_retoric();
+		this.text_structure = sample.get_text_structure();
 		
+		if(sample.get_logic())sample.set_logic_data(logic_binding());
+		
+		if(sample.get_number())sample.set_number_data(numbers());
+		System.out.println("size of numbers: " + numbers().size());
+		
+//**********************************************************
 		Buffer.lenght = main_text.length();
 		Buffer.lenght2 = (main_text.length() - words_volume());
 		Buffer.lenght3 = sentence_volume();
 	}
-
 	public int words_volume() {
 		//..COUNT ALL WORDS FROM DATATEXT
 			String[] array_all_words = main_text.split(" ");	//подсчет слов по количеству пробелов
@@ -41,9 +46,10 @@ public class Betta {
 			return point_count;
 		}
 		
-		public void vocab_of_retoric(){
+		public HashMap logic_binding(){
 			/*
-			 * Метод number() извлекает из текста числа следующим образом:
+			 * Метод logic_binding() извлекает из текста логические связки следующим образом:
+			 * В массиве всех слов происходит поиск следующих функторов: и, или, не, если...
 			 * 
 			 */
 			
@@ -66,10 +72,14 @@ public class Betta {
 			System.out.println("отрицание(логическое \"не\"):    " + not);
 			System.out.println("импликация(логическое \"если\"): " + impl);
 			
-			Buffer.con = con;
-			Buffer.dis = dis;
-			Buffer.not = not;
-			Buffer.impl = impl;
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			map.put("конъюнкция(логическое \"и\"):    ", con);
+			map.put("дизъюнкция(логическое \"или\"):  ", dis);
+			map.put("отрицание(логическое \"не\"):    ", not);
+			map.put("импликация(логическое \"если\"): ", impl);
+			//System.out.println(map.size());
+			
+			return map;
 		}
 		
 		public void names(){	
@@ -113,6 +123,39 @@ public class Betta {
 		}
 
 		
+		public HashSet numbers(){
+			/*
+			 * Метод number() извлекает из текста числа следующим образом:
+			 * Исходный текст преобразуется в массив слов
+			 * Каждое слово массива преобразуется в массив символов
+			 * В массиве символов осуществляется поиск чисел
+			 * Если находим число, извлекаем все слово, и переходим к следующему слову
+			 */
+			HashSet<String> set = new HashSet<String>();
+			
+			String[] list_all_words = main_text.split(" ");
+			String word_of_list_all_words = "";
+			char[] list_of_sybol;
+			char symbol;
+			
+				for(int i = 0; i < list_all_words.length; i++){
+					word_of_list_all_words = list_all_words[i];
+					list_of_sybol = word_of_list_all_words.toCharArray();		
+		//Ищем в слове (которое представлено набором символов) числа, и если находим, то извлекаем все слово			
+						for(int k = 0; k < list_of_sybol.length; k++){
+							symbol = list_of_sybol[k];
+							
+								if(Character.isDigit(symbol)){
+									System.out.println(word_of_list_all_words);
+									set.add(word_of_list_all_words);
+										break;	
+								}
+						}
+				}
+				return set;
+		}
+
+		
 		public String getClear_text(String fragment){
 			//..DELETE ALL TRASH_SYMBOL FROM DATATEXT
 			//..удаление лишних символов(точки, запятые и др.) и установление единого регистра
@@ -147,5 +190,4 @@ public class Betta {
 									}
 					return final_fragment;
 				}
-
 }
