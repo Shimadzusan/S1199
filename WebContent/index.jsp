@@ -5,8 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <link rel="stylesheet" href="style.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="style.css">
 </head>
 	<body bgcolor = #d4dee4>
 		<form method = "POST" action = "Servlet_one">
@@ -16,7 +16,7 @@
             </div>
             
             <div id="object_button">
-            <a href  = 'localhost:8080\S1199\WebContent\theory.html' style="color: white">Теория</a>
+            <a href  = 'theory.html' style="color: white">Теория</a>
             </div>
             
              <div style="color: white; background: #1C6956; height: 3%; width: 10%; float: left; border: solid 1px black; margin: 2px; text-align: center">
@@ -27,10 +27,6 @@
             <a href  = 'contact.html' style="color: white">Контакты</a>
             </div>
             
-            <!--
-            <div style="color: white; width: 69.2%; height: 5%; background: #d4dee4; font-family: Roman">
-<p>                <a href='http://localhost:8080/Webnew/theory.html'> Теория</a> О проекте Контакты Сравнить отчеты</p></div>
-            -->
             <div style = "font-family: brush script mt"; align = "center"><h1>Simple analysis of the text</h1>
             </div>
             
@@ -54,81 +50,120 @@
     <p><input name="logic" type="checkbox" value="true" >&nbsp; &nbsp; &nbsp; Логические связки</p>
     <p><input name="retoric" type="checkbox" value="true" >&nbsp; &nbsp; &nbsp; Риторические словари</p>
     <p><input name="text_structure" type="checkbox" value="true" >&nbsp; &nbsp; &nbsp; Структура текста</p>
-    <br>&nbsp; &nbsp;
-    <br>&nbsp; &nbsp;
-    
-            </div>
+   
+    </div>
+			
 <! modul_three>
-            <div style="height: 320px;">
+        <div style="height: 320px;">
             <br>&nbsp; &nbsp;
             <br>&nbsp; &nbsp;
-            </div>
-            
-            
+        </div>
+
             <div id="object">
        
-              <p style = "padding: 5px 30px;">РезультатыКаждый узел в языковом префиксном дереве содержит одну букву слова. Чтобы составить слово, нужно следовать по ветвям дерева, проходя по одной букве за раз. Дерево начинает ветвиться, когда порядок букв отличается от других имеющихся в нем слов или когда слово заканчивается. Каждый узел содержит букву (данные) и булево значение, которое указывает, является ли он последним в слове.
+              <p style = "padding: 5px 30px;">Результаты: Каждый узел в языковом префиксном дереве содержит одну букву слова. Чтобы составить слово, нужно следовать по ветвям дерева, проходя по одной букве за раз. Дерево начинает ветвиться, когда порядок букв отличается от других имеющихся в нем слов или когда слово заканчивается. Каждый узел содержит букву (данные) и булево значение, которое указывает, является ли он последним в слове.
                 <br>
-                <br> Посмотрите на иллюстрацию и попробуйте составить слова. Всегда начинайте с корневого узла вверху и спускайтесь вниз. Это дерево содержит следующие слова: ball, bat, doll, do, dork, dorm, send, sense.
-                </p>
+                 <br> Общая информация:
+				</p>
 				
 <! modul_four: java_code, jsp>
-			<%Samplable s = Sample.sample; %>	
-                
-<%out.println("all symbols: " + Buffer.lenght);%>
-<br><%
-out.println("all symbols without space: " + Buffer.lenght2);%>
-<br><%
-out.println("all words: " + (Buffer.lenght - Buffer.lenght2));%>
-<br><%
-out.println("all sentence: " + Buffer.lenght3);
-//out.println(s.get_logic());
 
-%><br>
+		<%Samplable jsp_sample = Sample.sample; %>	
+					
+	<%out.println("all symbols: " + Buffer.lenght + ", all symbols without space: " + Buffer.lenght2);%>
+	<br><%
+	out.println("all words: " + (Buffer.lenght - Buffer.lenght2));%>
+	<br><%
+	out.println("all sentence: " + Buffer.lenght3);
+	//out.println(s.get_logic());
+	%><br><br>
+
+Логические связки:<br><br>
    <%
-   try{
-   if(s.get_logic()) {
-	   //HashMap m = new HashMap();
-	   out.println("Логические связки:<br>");
-
-out.println("конъюнкция: " + s.get_logic_data().get("конъюнкция(логическое \"и\"):    "));%>
-<br><%
-out.println("дизъюнкция: " + s.get_logic_data().get("дизъюнкция(логическое \"или\"):  "));%>
-<br><%
-out.println("отрицание: " + s.get_logic_data().get("отрицание(логическое \"не\"):    "));%> 
-<br><%
-out.println("импликация: " + s.get_logic_data().get("импликация(логическое \"если\"): "));
-                }
-   }
-   catch (NullPointerException e) {
-		e.printStackTrace();
+	   try{
+		   if(jsp_sample.get_logic()) {
+			out.println("конъюнкция: " + jsp_sample.get_logic_data().get("конъюнкция(логическое \"и\"):    "));%>
+			<br><%
+			out.println("дизъюнкция: " + jsp_sample.get_logic_data().get("дизъюнкция(логическое \"или\"):  "));%>
+			<br><%
+			out.println("отрицание: " + jsp_sample.get_logic_data().get("отрицание(логическое \"не\"):    "));%> 
+			<br><%
+			out.println("импликация: " + jsp_sample.get_logic_data().get("импликация(логическое \"если\"): "));%>
+			<br><br>
+			<%                
+			}
 		}
-   finally{
-	   
-   }
-%> 
-<br>
-<br>    
-<%
-   try{
-   if(s.get_number()) {
-	   out.println("Числа:");%><br><%
-	 HashSet<String> set_x = s.get_number_data(); 
-for(String z : set_x){
-	%><br>
+	   catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+	   finally {
+	   }
+	%>
+
+	Числа:
+	<br>    
 	<%
-	out.println(z);
-}	   
-
-}
-   }
-   catch (NullPointerException e) {
-		e.printStackTrace();
+		try {
+		   if(jsp_sample.get_number()) {
+			 HashSet<String> set_number = jsp_sample.get_number_data(); 
+				for(String element : set_number){
+					%><br>
+					<%
+					out.println(element);
+				}
+%><br><%				
+			}
 		}
-   finally{
-	   
-   }
-%>     
+		   catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+		   finally {   
+		   }
+		%>
+
+	Имена:
+		<br>    
+		<%
+			try {
+			   if(jsp_sample.get_name()) {
+				 HashSet<String> set_name = jsp_sample.get_name_data(); 
+					for(String element : set_name){
+						%><br>
+						<%
+						out.println(element);
+					}	   
+				}
+			}
+			   catch (NullPointerException e) {
+					e.printStackTrace();
+				}
+			   finally {   
+			   }
+			%>   
+
+				Структура текста:
+		<br>    
+		<%
+			try {
+			   if(jsp_sample.get_text_structure()) {
+				 ArrayList<String> sorted_list = jsp_sample.get_text_structure_data(); 
+				 //TreeMap<String, Integer> sorted_map = jsp_sample.get_text_structure_data(); 
+					for(String element : sorted_list){
+						%><br>
+						<%
+						out.println(element);
+					}
+					/* map.entrySet().stream()
+			        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed()) 
+			        .forEach(System.out::println); // или любой другой конечный метод*/
+				}
+			}
+			   catch (NullPointerException e) {
+					e.printStackTrace();
+				}
+			   finally {   
+			   }
+			%>   
          
             </div>
             <br>

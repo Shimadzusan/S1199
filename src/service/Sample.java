@@ -1,7 +1,9 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.TreeMap;
 
 public class Sample implements Samplable {
 	String text;
@@ -12,7 +14,18 @@ public class Sample implements Samplable {
 	HashSet name_data;
 	HashSet number_data;
 	HashMap logic_data;
-	
+	ArrayList text_structure_data;
+	//TreeMap text_structure_data;
+//===processing area===
+	@Override
+	public void set_name_data(HashSet name_data) {
+		this.name_data = name_data;
+		
+	}
+	@Override
+	public HashSet get_name_data() {
+		return this.name_data;
+	}
 	
 	@Override
 	public void set_number_data(HashSet number_data) {
@@ -32,7 +45,16 @@ public class Sample implements Samplable {
 	public HashMap get_logic_data() {
 		return this.logic_data;
 	}
-//-------------------------------------------------------------------------
+	@Override
+	public void set_text_structure_data(ArrayList text_structure_data) {
+		this.text_structure_data = text_structure_data;
+	}
+	@Override
+	public ArrayList get_text_structure_data() {
+		return this.text_structure_data;
+	}
+	
+//===switches_ares===
 	@Override
 	public void set_text(String text) {
 		this.text = text;

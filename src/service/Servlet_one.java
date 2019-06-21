@@ -32,7 +32,7 @@ public class Servlet_one extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 //=========================================================================================	
-		String web_text = request.getParameter("text_area");
+		String web_text = request.getParameter("text_area") + " ";//плюс пробел - временный костыль
 			
 			String name = request.getParameter("name");
 			String number = request.getParameter("number");
@@ -90,109 +90,3 @@ public class Servlet_one extends HttpServlet {
 	}
 
 }
-
-//class Sample implements Samplable {
-//	String text;
-//	static Samplable sample;
-//	
-//	boolean name, number, logic, retoric, text_structure;
-//	
-//	HashSet name_data;
-//	HashSet number_data;
-//	HashMap logic_data;
-//	
-//	@Override
-//	public void set_logic_data(HashMap logic_data) {
-//		this.logic_data = logic_data;
-//	}
-//	@Override
-//	public HashMap get_logic_data() {
-//		return this.logic_data;
-//	}
-////-------------------------------------------------------------------------
-//	@Override
-//	public void set_text(String text) {
-//		this.text = text;
-//	}
-//
-//	@Override
-//	public String get_text() {
-//		return this.text;
-//	}
-//
-//	@Override
-//	public void set_name(boolean name) {
-//		this.name = name;
-//	}
-//
-//	@Override
-//	public boolean get_name() {
-//		return this.name;
-//	}
-//
-//	@Override
-//	public void set_number(boolean number) {
-//		this.number = number;
-//	}
-//
-//	@Override
-//	public boolean get_number() {
-//		return this.number;
-//	}
-//
-//	@Override
-//	public void set_logic(boolean logic) {
-//		this.logic = logic;
-//	}
-//
-//	@Override
-//	public boolean get_logic() {
-//		return this.logic;
-//	}
-//
-//	@Override
-//	public void set_retoric(boolean retoric) {
-//		this.retoric = retoric;
-//	}
-//
-//	@Override
-//	public boolean get_retoric() {
-//		return this.retoric;
-//	}
-//
-//	@Override
-//	public void set_text_structure(boolean text_structure) {
-//		this.text_structure = text_structure;
-//	}
-//
-//	@Override
-//	public boolean get_text_structure() {
-//		return this.text_structure;
-//	}
-//
-//}
-
-// interface Samplable {
-//	 
-//	 void set_text(String text);
-//	 String get_text();
-//	 
-//	 void set_name(boolean name);
-//	 boolean get_name();
-//	 
-//	 void set_number(boolean number);
-//	 boolean get_number();
-//	 
-//	 void set_logic(boolean logic);
-//	 boolean get_logic();
-//	 
-//	 void set_retoric(boolean retoric);
-//	 boolean get_retoric();
-//	 
-//	 void set_text_structure(boolean text_structure);
-//	 boolean get_text_structure();
-//	 
-//	 void set_logic_data(HashMap logic_data);
-//	 HashMap get_logic_data();
-//	 
-//}
