@@ -36,11 +36,6 @@ public interface Samplable {
 		 
 		 void set_text_structure_data(ArrayList text_structure_data);
 		 ArrayList get_text_structure_data();
-		 
-//		 void set_text_structure_data(TreeMap text_structure_data);
-//		 TreeMap get_text_structure_data();
-		 
-		
-		 
+		 	 
 }
 

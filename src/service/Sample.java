@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 public class Sample implements Samplable {
 	String text;
-	public static Samplable sample;
+	public static Samplable sample; // variable uses in jasp_page
 	
 	boolean name, number, logic, retoric, text_structure;
 	
@@ -15,7 +15,7 @@ public class Sample implements Samplable {
 	HashSet number_data;
 	HashMap logic_data;
 	ArrayList text_structure_data;
-	//TreeMap text_structure_data;
+
 //===processing area===
 	@Override
 	public void set_name_data(HashSet name_data) {
@@ -115,5 +115,4 @@ public class Sample implements Samplable {
 		return this.text_structure;
 	}
 	
-
 }

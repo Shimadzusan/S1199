@@ -74,13 +74,10 @@ public class Servlet_one extends HttpServlet {
 		System.out.println("4" + sample.get_retoric());
 		System.out.println("5" + sample.get_text_structure());
 		new Hamma(sample);
-		//System.out.println(sample.get_logic_data());
 		
 //==========================================================================================
 		
 		Buffer.lenght = web_text.length();
-		
-		//Betta betta = new Betta(web_text, lg);
 		
 		response.sendRedirect("index.jsp");
 		

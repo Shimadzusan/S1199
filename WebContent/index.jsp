@@ -12,7 +12,7 @@
 		<form method = "POST" action = "Servlet_one">
        
             <div id="object_button">
-            <a href  = 'index.html' style="color: white">Главная страница</a>
+            <a href  = 'index.jsp' style="color: white">Главная страница</a>
             </div>
             
             <div id="object_button">

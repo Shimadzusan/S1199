@@ -13,6 +13,14 @@ public class Hamma {
 	
 	String[] array_all_words;
 	
+//два конструктора добавлены только из-за тестирования, для удобства тестирования
+	public Hamma() {
+		
+	}
+	
+	public Hamma(String text) {
+		this.main_text = text;
+	}
 	
 	public Hamma(Samplable sample) {
 		this.main_text = sample.get_text();
@@ -28,8 +36,6 @@ public class Hamma {
 		if(sample.get_text_structure())sample.set_text_structure_data(text_structure_two());
 		if(sample.get_name())sample.set_name_data(names());
 		if(sample.get_number())sample.set_number_data(numbers());
-		//System.out.println("size of numbers: " + numbers().size());
-		
 		if(sample.get_logic())sample.set_logic_data(logic_binding());
 		
 //**********************************************************
@@ -37,6 +43,7 @@ public class Hamma {
 		Buffer.lenght2 = (main_text.length() - words_volume());
 		Buffer.lenght3 = sentence_volume();
 	}
+	
 	public int words_volume() {
 		//..COUNT ALL WORDS FROM DATATEXT
 			String[] array_all_words = main_text.split(" ");	//подсчет слов по количеству пробелов
@@ -44,7 +51,7 @@ public class Hamma {
 			return volume;
 		}
 
-		public int sentence_volume() {
+	public int sentence_volume() {
 		//..COUNT ALL SATZ FROM DATATEXT
 			int point_count = 0;
 			char[] array_of_symbol = main_text.toCharArray();			//подсчет предложений по количеству точек
@@ -55,7 +62,7 @@ public class Hamma {
 			return point_count;
 		}
 		
-		public HashMap logic_binding(){
+	public HashMap logic_binding(){
 			/*
 			 * Метод logic_binding() извлекает из текста логические связки следующим образом:
 			 * В массиве всех слов происходит поиск следующих функторов: и, или, не, если...
@@ -91,7 +98,7 @@ public class Hamma {
 			return map;
 		}
 		
-		public HashSet names() {	
+	public HashSet names() {	
 			/*
 			 * Метод names() извлекает из текста Имена следующим образом:
 			 * Исходный текст преобразуется в массив символов
@@ -134,7 +141,7 @@ public class Hamma {
 		}
 
 		
-		public HashSet numbers(){
+	public HashSet numbers(){
 			/*
 			 * Метод number() извлекает из текста числа следующим образом:
 			 * Исходный текст преобразуется в массив слов
@@ -428,8 +435,8 @@ public class Hamma {
 				}
 			
 		return list_jsp;
-		
 	}
+	
 	private int get_number(String string) {
 		
 		int i = 0;
@@ -439,7 +446,7 @@ public class Hamma {
 		return i;
 	}
 		
-		public String getClear_text(String fragment){
+	public String getClear_text(String fragment){
 			//..DELETE ALL TRASH_SYMBOL FROM DATATEXT
 			//..удаление лишних символов(точки, запятые и др.) и установление единого регистра
 						char[] array_of_symbol = fragment.toCharArray();
@@ -457,7 +464,7 @@ public class Hamma {
 				return final_fragment;
 			}
 
-			public String getClear_text2(String fragment){
+	public String getClear_text2(String fragment){
 				//..DELETE ALL TRASH_SYMBOL FROM DATATEXT
 				//..удаление лишних символов(точки, запятые и др.) 
 							char[] array_of_symbol = fragment.toCharArray();
