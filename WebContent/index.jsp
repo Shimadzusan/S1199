@@ -33,7 +33,7 @@
 <! modul_one: text_area and buttons>
             
             <div style="color: white; width: 69.2%; height: 300px; background: #46AF97; font-family: Roman; border: solid 1px black;  float: left">
-                <p align="center"><textarea  name= "text_area" style= "background-color: #ffe; color: #930; cols: 100; rows: 65; width: 97%; height: 200px"></textarea></p>
+                <p align="center"><textarea  name= "text_area" style= "background-color: #ffe; color: #930; cols: 100; rows: 65; width: 27%; height: 500px"></textarea></p>
                  <p align="center"><input  onclick="my_f()" id="mybutton" type = "submit" value = "Проверить текст">&nbsp;
             <input type = "submit" value = "Загрузить файл"> &nbsp;<input type = "submit" value = "Сохранить отчет"></p>
             </div>
@@ -54,21 +54,20 @@
     </div>
 			
 <! modul_three>
-        <div style="height: 320px;">
-            <br>&nbsp; &nbsp;
-            <br>&nbsp; &nbsp;
-        </div>
+    <div style="height: 320px;">
+        <br>&nbsp; &nbsp;
+         <br>&nbsp; &nbsp;
+    </div>
 
-            <div id="object">
-       
-              <p style = "padding: 5px 30px;">Результаты: Каждый узел в языковом префиксном дереве содержит одну букву слова. Чтобы составить слово, нужно следовать по ветвям дерева, проходя по одной букве за раз. Дерево начинает ветвиться, когда порядок букв отличается от других имеющихся в нем слов или когда слово заканчивается. Каждый узел содержит букву (данные) и булево значение, которое указывает, является ли он последним в слове.
-                <br>
-                 <br> Общая информация:
-				</p>
+    <div id="object">   
+        <p style = "padding: 5px 30px;">Результаты: Каждый узел в языковом префиксном дереве содержит одну букву слова. Чтобы составить слово, нужно следовать по ветвям дерева, проходя по одной букве за раз. Дерево начинает ветвиться, когда порядок букв отличается от других имеющихся в нем слов или когда слово заканчивается. Каждый узел содержит букву (данные) и булево значение, которое указывает, является ли он последним в слове.
+        <br>
+        <br> Общая информация:
+		</p>
 				
 <! modul_four: java_code, jsp>
 
-		<%Samplable jsp_sample = Sample.sample; %>	
+	<%Samplable jsp_sample = Sample.sample; %>	
 					
 	<%out.println("all symbols: " + Buffer.lenght + ", all symbols without space: " + Buffer.lenght2);%>
 	<br><%
@@ -78,8 +77,8 @@
 	//out.println(s.get_logic());
 	%><br><br>
 
-Логические связки:<br><br>
-   <%
+	Логические связки:<br><br>
+ 	<%
 	   try{
 		   if(jsp_sample.get_logic()) {
 			out.println("конъюнкция: " + jsp_sample.get_logic_data().get("конъюнкция(логическое \"и\"):    "));%>
@@ -111,15 +110,14 @@
 					<%
 					out.println(element);
 				}
-%><br><%				
+	%><br><%				
 			}
-		}
-		   catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
 		   finally {   
 		   }
-		%>
+	%>
 
 	Имена:
 		<br>    
@@ -133,15 +131,14 @@
 						out.println(element);
 					}	   
 				}
-			}
-			   catch (NullPointerException e) {
+			} catch (NullPointerException e) {
 					e.printStackTrace();
 				}
 			   finally {   
 			   }
 			%>   
 
-				Структура текста:
+	Структура текста:
 		<br>    
 		<%
 			try {
@@ -157,16 +154,15 @@
 			        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed()) 
 			        .forEach(System.out::println); // или любой другой конечный метод*/
 				}
-			}
-			   catch (NullPointerException e) {
+			} catch (NullPointerException e) {
 					e.printStackTrace();
 				}
-			   finally {   
+			  finally {   
 			   }
 			%>   
          
             </div>
             <br>
-            </form>
-        </body>  
+           </form>
+       </body>  
 </html>

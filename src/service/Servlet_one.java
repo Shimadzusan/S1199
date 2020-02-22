@@ -23,15 +23,9 @@ public class Servlet_one extends HttpServlet {
         sample = new Sample();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("I am servlet_one ...method post");
-		
+		System.out.println("I am servlet_one ...method post(marker)");
 		request.setCharacterEncoding("utf-8");
-//=========================================================================================	
 		String web_text = request.getParameter("text_area") + " ";//плюс пробел - временный костыль
 			
 			String name = request.getParameter("name");
@@ -42,7 +36,6 @@ public class Servlet_one extends HttpServlet {
 			
 		if(logic != null) {lg = true;} else {lg = false;}
 		
-		//Samplable sample = new Sample();
 //if-version_one
 		if(name != null) {sample.set_name(true);} else {sample.set_name(false);}
 		if(number != null) {sample.set_number(true);} else {sample.set_number(false);}
@@ -50,35 +43,19 @@ public class Servlet_one extends HttpServlet {
 //if-version_two
 		sample.set_retoric((retoric != null) ? true : false);
 		sample.set_text_structure((text_structure != null) ? true : false);
-		
 		sample.set_text(web_text);
-		
 		Sample.sample = this.sample;//only for jsp-page
 		
-		
-//		System.out.println(web_text);
-//		
-//		System.out.println(name);
-//		System.out.println(number);
-//		System.out.println(logic);
-//		System.out.println(retoric);
-//		System.out.println(text_structure);
-//		
-//		System.out.println("lg: " + lg);
-//		
-//	//-----------------------------------------
 		System.out.println("++++++++++++++++++++++++++++++++++++");
 		System.out.println("1" + sample.get_name());
 		System.out.println("2" + sample.get_number());
 		System.out.println("3" + sample.get_logic());
 		System.out.println("4" + sample.get_retoric());
 		System.out.println("5" + sample.get_text_structure());
+		System.out.println("Print cash check");
 		new Hamma(sample);
 		
-//==========================================================================================
-		
 		Buffer.lenght = web_text.length();
-		
 		response.sendRedirect("index.jsp");
 		
 //for consol desing
